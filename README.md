@@ -3,7 +3,7 @@
 Write compact **qu**izzes and t**ests** (quests) with Typst! To get started, see the [template/main.typ](template/main.typ) file:
 
 ```typst
-#import "@preview/quest:0.1.0": *
+#import "@preview/quest:0.2.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -11,7 +11,7 @@ Write compact **qu**izzes and t**ests** (quests) with Typst! To get started, see
 #let blank = blank.with(display)
 #let correct-choice = correct-choice(display)
 #let correct-option = correct-option(display)
-#show: exam.with(
+#show: quest.with(
   "My Quiz or Test",
   "Kevin Lin",
 
@@ -68,7 +68,7 @@ The contents of this file compiles to the following preview.
 The simplest way to use this package is to adapt the [template/main.typ](template/main.typ) file. This template file walks through the necessary frontmatter to write a compact quiz or test. However, the simplest frontmatter only requires specifying the name and author of the document:
 
 ```typst
-#import "@preview/quest:0.1.0": *
+#import "@preview/quest:0.2.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -76,7 +76,7 @@ The simplest way to use this package is to adapt the [template/main.typ](templat
 #let blank = blank.with(display)
 #let correct-choice = correct-choice(display)
 #let correct-option = correct-option(display)
-#show: exam.with(
+#show: quest.with(
   "My Quiz or Test",
   "Kevin Lin",
 )

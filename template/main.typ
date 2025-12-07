@@ -1,4 +1,4 @@
-#import "@preview/quest:0.1.0": *
+#import "@preview/quest:0.2.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -6,7 +6,7 @@
 #let blank = blank.with(display)
 #let correct-choice = correct-choice(display)
 #let correct-option = correct-option(display)
-#show: exam.with(
+#show: quest.with(
   "My Quiz or Test",
   "Kevin Lin",
 

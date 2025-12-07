@@ -51,7 +51,7 @@
   space(num)
 }
 
-#let exam(
+#let quest(
   title,
   author,
   identity: (name: none, id: none),
