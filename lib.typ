@@ -55,6 +55,7 @@
   title,
   author,
   identity: (name: none, id: none),
+  fields: auto,
   paper: "us-letter",
   font: ("Fira Sans", "Lete Sans Math"),
   font-math: "Fira Math",
@@ -71,16 +72,28 @@
     author: author,
   )
 
+  // Map each identity key to a label string or a (label: ..., width: ...) dictionary
+  let fields = if fields == auto {
+    (name: "Name") + if "id" in identity { (id: "ID") }
+    else if "email" in identity { (email: "Email") }
+    else { (:) }
+  } else { fields }
+
   set page(
     paper: paper,
     header: context if calc.odd(counter(page).get().first()) {
       grid(
-        columns: (1fr,) + (auto,) * 2,
+        columns: (1fr,) + (auto,) * fields.len(),
         gutter: 1em,
         text(weight: "bold", title),
-        "Name: " + blank(true, 15em, identity.name),
-        if "id" in identity { "ID: " + blank(true, 10em, identity.id) }
-        else if "email" in identity { "Email: " + blank(true, 10em, identity.email) },
+        ..fields.pairs().map(((key, field)) => {
+          let (label, width) = if type(field) == dictionary {
+            (field.label, field.at("width", default: if key == "name" { 15em } else { 10em }))
+          } else {
+            (field, if key == "name" { 15em } else { 10em })
+          }
+          [#label: ] + blank(true, width, identity.at(key, default: none))
+        }),
       )
     },
   )

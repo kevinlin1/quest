@@ -3,7 +3,7 @@
 Write compact **qu**izzes and t**ests** (quests) with Typst! To get started, see the [template/main.typ](template/main.typ) file:
 
 ```typst
-#import "@preview/quest:0.2.0": *
+#import "@preview/quest:0.3.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -20,6 +20,8 @@ Write compact **qu**izzes and t**ests** (quests) with Typst! To get started, see
   // Or specify an identity that will only appear when display = true (for solution guides)
   ..if display { (identity: (name: "Kevin Lin", id: "@kevinlin1")) },
   // An alternative to specifying id is email, as in (name: "Kevin Lin", email: "hello@kevinl.info")
+  // Customize the header fields by mapping each identity key to a label (or a dictionary with label and width)
+  // fields: (name: "Name", id: "Student ID"),
 
   // Customize default settings (or remove these to accept defaults)
   paper: "us-letter",
@@ -68,7 +70,7 @@ The contents of this file compiles to the following preview.
 The simplest way to use this package is to adapt the [template/main.typ](template/main.typ) file. This template file walks through the necessary frontmatter to write a compact quiz or test. However, the simplest frontmatter only requires specifying the name and author of the document:
 
 ```typst
-#import "@preview/quest:0.2.0": *
+#import "@preview/quest:0.3.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -83,3 +85,15 @@ The simplest way to use this package is to adapt the [template/main.typ](templat
 ```
 
 This produces an empty quiz or test with blank "Name" and "ID" fields.
+
+To change the header fields, pass `fields` as a dictionary that maps each `identity` key to its label. Each value can be either a label string or a dictionary with `label` and an optional `width` (by default, `name` is `15em` and every other field is `10em`). The header shows the fields in the order you list them.
+
+```typst
+#show: quest.with(
+  "My Quiz or Test",
+  "Kevin Lin",
+  fields: (name: "Name", username: (label: "Username", width: 8em)),
+  // Optionally fill in the fields, e.g. for solution guides
+  identity: (name: "Kevin Lin", username: "kevinlin1"),
+)
+```

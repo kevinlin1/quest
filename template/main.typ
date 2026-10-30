@@ -1,4 +1,4 @@
-#import "@preview/quest:0.2.0": *
+#import "@preview/quest:0.3.0": *
 
 #let display = true
 #let solution = solution.with(display)
@@ -15,6 +15,8 @@
   // Or specify an identity that will only appear when display = true (for solution guides)
   ..if display { (identity: (name: "Kevin Lin", id: "@kevinlin1")) },
   // An alternative to specifying id is email, as in (name: "Kevin Lin", email: "hello@kevinl.info")
+  // Customize the header fields by mapping each identity key to a label (or a dictionary with label and width)
+  // fields: (name: "Name", id: "Student ID"),
 
   // Customize default settings (or remove these to accept defaults)
   paper: "us-letter",
